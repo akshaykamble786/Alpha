@@ -189,9 +189,17 @@ function LoadingFallback() {
 
 export default function Car360View() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  const handleOpenChange = (open) => {
+    setIsOpen(open)
+    if (open) {
+      setIsLoaded(false)
+    }
+  }
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         <Button className="absolute bottom-16 left-3 bg-purple-600 hover:bg-purple-700 text-white shadow-lg gap-2">
           <RotateCcw className="h-4 w-4" />
@@ -217,7 +225,21 @@ export default function Car360View() {
         </DialogHeader>
 
         <div className="relative h-[60vh] min-h-[400px] bg-gradient-to-b from-gray-800 to-gray-900">
-          <Canvas camera={{ position: [4, 2.5, 4], fov: 45 }} dpr={[1, 2]} performance={{ min: 0.5 }} shadows>
+          {!isLoaded && (
+            <div className="absolute inset-0 flex items-center justify-center bg-gray-900/80 z-10">
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin" />
+                <p className="text-white text-sm">Loading 3D Model...</p>
+              </div>
+            </div>
+          )}
+          <Canvas 
+            camera={{ position: [4, 2.5, 4], fov: 45 }} 
+            dpr={[1, 2]} 
+            performance={{ min: 0.5 }} 
+            shadows
+            onCreated={() => setIsLoaded(true)}
+          >
             <ambientLight intensity={0.5} />
             <directionalLight position={[5, 5, 5]} intensity={1} castShadow />
             <directionalLight position={[-5, 3, -5]} intensity={0.4} />

@@ -6,18 +6,14 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-interface ImageCarouselProps {
-  images: string[]
-}
-
-export default function ImageCarousel({ images }: ImageCarouselProps) {
+export default function ImageCarousel({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [displayIndex, setDisplayIndex] = useState(0)
-  const thumbnailRef = useRef<HTMLDivElement>(null)
+  const thumbnailRef = useRef(null)
 
   const transitionToSlide = useCallback(
-    (newIndex: number) => {
+    (newIndex) => {
       if (isTransitioning || newIndex === currentIndex) return
 
       setIsTransitioning(true)
@@ -47,7 +43,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
   }, [currentIndex, images.length, transitionToSlide])
 
   const goToSlide = useCallback(
-    (index: number) => {
+    (index) => {
       transitionToSlide(index)
     },
     [transitionToSlide],
@@ -56,7 +52,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
   useEffect(() => {
     if (thumbnailRef.current) {
       const container = thumbnailRef.current
-      const activeThumb = container.children[currentIndex] as HTMLElement
+      const activeThumb = container.children[currentIndex]
       if (activeThumb) {
         const scrollLeft = activeThumb.offsetLeft - container.offsetWidth / 2 + activeThumb.offsetWidth / 2
         container.scrollTo({ left: scrollLeft, behavior: "smooth" })

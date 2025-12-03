@@ -13,13 +13,11 @@ import {
 } from "@/components/ui/dialog"
 import { Canvas } from "@react-three/fiber"
 import { OrbitControls, Environment, Html } from "@react-three/drei"
-import type * as THREE from "three"
 
 function StylizedCar() {
-  const groupRef = useRef<THREE.Group>(null)
+  const groupRef = useRef(null)
 
-  // Car body color - Mahindra Thar red
-  const bodyColor = "#C41E3A"
+  const bodyColor = "#333333"
   const windowColor = "#1a1a2e"
   const wheelColor = "#1a1a1a"
   const tireColor = "#333333"
@@ -96,15 +94,15 @@ function StylizedCar() {
         <meshStandardMaterial color="#ff0000" emissive="#ff0000" emissiveIntensity={0.3} />
       </mesh>
 
-      {/* Wheels */}
-      {[
-        [-0.7, 0.15, 0.7],
-        [-0.7, 0.15, -0.7],
-        [0.7, 0.15, 0.7],
-        [0.7, 0.15, -0.7],
-      ].map((pos, i) => (
-        <group key={i} position={pos as [number, number, number]}>
-          {/* Tire */}
+      /* Wheels */
+        {[
+          [-0.7, 0.15, 0.7],
+          [-0.7, 0.15, -0.7],
+          [0.7, 0.15, 0.7],
+          [0.7, 0.15, -0.7],
+        ].map((pos, i) => (
+          <group key={i} position={pos}>
+            {/* Tire */}
           <mesh rotation={[Math.PI / 2, 0, 0]}>
             <cylinderGeometry args={[0.25, 0.25, 0.2, 24]} />
             <meshStandardMaterial color={tireColor} roughness={0.9} />

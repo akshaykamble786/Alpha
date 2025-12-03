@@ -6,11 +6,7 @@ import { Slider } from "@/components/ui/slider"
 import { Button } from "@/components/ui/button"
 import { BarChart3, X } from "lucide-react"
 
-interface PriceCalculatorProps {
-  basePrice: number
-}
-
-export default function PriceCalculator({ basePrice }: PriceCalculatorProps) {
+export default function PriceCalculator({basePrice}) {
   const [numberOfInvites, setNumberOfInvites] = useState(50)
   const [durationOfEvent, setDurationOfEvent] = useState(3)
 
@@ -19,7 +15,7 @@ export default function PriceCalculator({ basePrice }: PriceCalculatorProps) {
     return numberOfInvites * durationOfEvent * 10
   }, [numberOfInvites, durationOfEvent])
 
-  const formatCurrency = (value: number) => {
+  const formatCurrency = (value) => {
     return new Intl.NumberFormat("en-IN", {
       style: "currency",
       currency: "INR",
@@ -31,9 +27,6 @@ export default function PriceCalculator({ basePrice }: PriceCalculatorProps) {
     <Card className="bg-white shadow-sm">
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <CardTitle className="text-lg font-semibold text-gray-900">Price Calculator</CardTitle>
-        <Button variant="ghost" size="icon" className="text-gray-400 h-8 w-8">
-          <X className="h-4 w-4" />
-        </Button>
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Number of Invites Slider */}
@@ -89,12 +82,6 @@ export default function PriceCalculator({ basePrice }: PriceCalculatorProps) {
             Based on {numberOfInvites} invites × {durationOfEvent} hours
           </p>
         </div>
-
-        {/* View Breakdown Link */}
-        <button className="flex items-center gap-2 text-sm text-purple-600 hover:text-purple-700 font-medium">
-          <BarChart3 className="h-4 w-4" />
-          View Price Breakdown
-        </button>
 
         {/* CTA Button */}
         <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white h-12 text-base font-semibold">

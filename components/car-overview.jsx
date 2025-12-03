@@ -2,7 +2,19 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, Gauge, Fuel, Settings2, User, MapPin, Car, Sofa, Space, AlignVerticalSpaceAround, ShipWheel } from "lucide-react"
+import {
+  Calendar,
+  Gauge,
+  Fuel,
+  Settings2,
+  User,
+  MapPin,
+  Car,
+  Sofa,
+  Space,
+  AlignVerticalSpaceAround,
+  ShipWheel,
+} from "lucide-react"
 
 export default function CarOverview({ carData }) {
   const formatPrice = (price) => {
@@ -42,20 +54,6 @@ export default function CarOverview({ carData }) {
               <div className="flex items-center gap-2 mt-1">
                 <MapPin className="h-4 w-4 text-gray-400" />
                 <span className="text-sm text-gray-500">{carData.location}</span>
-              </div>
-              <hr className="my-4" />
-
-
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full gap-2">
-                <div>
-                  <p className="text-base font-medium">or ₹24,136/m</p>
-                  <span className="text-xs text-gray-500">Starting EMI</span>
-                </div>
-                <div className="flex items-center">
-                  <button className="px-4 py-2 rounded-md bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 whitespace-nowrap">
-                    Calculate your EMI
-                  </button>
-                </div>
               </div>
             </div>
 
@@ -117,21 +115,21 @@ export default function CarOverview({ carData }) {
             <Badge variant="outline" className="border-teal-200 text-teal-700 bg-teal-50">
               Integrated (in-dash) music system
             </Badge>
-            <Badge variant="outline" className="border-purple-200 text-purple-700 bg-purple-50">
+            <Badge variant="outline" className="border-teal-200 text-teal-700 bg-teal-50">
               Apple car play / android auto
             </Badge>
             <Badge variant="outline" className="border-teal-200 text-teal-700 bg-teal-50">
               Touch screen infotainment system
             </Badge>
-            <Badge variant="outline" className="border-purple-200 text-purple-700 bg-purple-50">
+            <Badge variant="outline" className="border-teal-200 text-teal-700 bg-teal-50">
               GPS navigation system
             </Badge>
-            <Badge variant="outline" className="border-teal-200 text-teal-700 bg-teal-50">
+            <Badge variant="outline" className="border-purple-200 text-purple-700 bg-purple-50">
               Driver height adjustable seat
             </Badge>
             <Badge variant="outline" className="border-purple-200 text-purple-700 bg-purple-50">
-            Steering mounted controls
-            </Badge>              
+              Steering mounted controls
+            </Badge>
           </div>
         </CardContent>
       </Card>
